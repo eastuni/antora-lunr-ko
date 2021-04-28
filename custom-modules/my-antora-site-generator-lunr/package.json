@@ -1,0 +1,61 @@
+{
+  "name": "finlab-antora-site-generator-lunr",
+  "version": "0.1.0",
+  "description": "An Antora's site generator that produces a Lunr index.",
+  "license": "MIT",
+  "author": "bwg",
+  "homepage": "https://antora.org",
+  "main": "lib/index.js",
+  "optionalDependencies": {
+    "@antora/asciidoc-loader": "~2",
+    "@antora/content-aggregator": "~2",
+    "@antora/content-classifier": "~2",
+    "@antora/document-converter": "~2",
+    "@antora/navigation-builder": "~2",
+    "@antora/page-composer": "~2",
+    "@antora/playbook-builder": "~2",
+    "@antora/redirect-producer": "2",
+    "@antora/site-mapper": "~2",
+    "@antora/site-publisher": "~2",
+    "@antora/ui-loader": "~2"
+  },
+  "dependencies": {
+    "finlab-antora-lunr": "0.1.0"
+  },
+  "devDependencies": {
+    "@antora/asciidoc-loader": "~2",
+    "@antora/content-aggregator": "~2",
+    "@antora/content-classifier": "~2",
+    "@antora/document-converter": "~2",
+    "@antora/navigation-builder": "~2",
+    "@antora/page-composer": "~2",
+    "@antora/playbook-builder": "~2",
+    "@antora/redirect-producer": "2",
+    "@antora/site-mapper": "~2",
+    "@antora/site-publisher": "~2",
+    "@antora/ui-loader": "~2",
+    "chai": "^4.2.0",
+    "cheerio": "^1.0.0-rc.3",
+    "dirty-chai": "^2.0.1",
+    "fs-extra": "^8.1.0",
+    "mocha": "^8.0.1",
+    "rimraf": "^3.0.2"
+  },
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "files": [
+    "lib/"
+  ],
+  "keywords": [
+    "antora",
+    "antora-component",
+    "generator",
+    "pipeline",
+    "documentation",
+    "static site",
+    "web publishing",
+    "lunr",
+    "search engine"
+  ]
+}
