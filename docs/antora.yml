@@ -1,0 +1,5 @@
+name: mydocs
+title: docs and guides 
+version: 'master'
+nav:
+- modules/ROOT/nav.adoc

@@ -1,0 +1,201 @@
+= content2
+
+== Diagram - Kroki
+
+https://github.com/Mogztter/asciidoctor-kroki 추가 시 다음의 digram 사용 가능 
+
+.graphviz example
+[graphviz]
+....
+digraph foo {
+  node [style=rounded]
+  node1 [shape=box]
+  node2 [fillcolor=yellow, style="rounded,filled", shape=diamond]
+  node3 [shape=record, label="{ a | b | c }"]
+
+  node1 -> node2 -> node3
+}
+....
+
+.mermaid example
+[mermaid,abcd-flowchart,svg]
+....
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+....
+
+.plantuml example : sequence
+[plantuml,alice-bob,svg,role=sequence]
+....
+alice ->> bob
+....
+
+.plantuml example : class
+[plantuml, diagram-classes, png]     
+....
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+....
+
+
+.ditaa example
+[ditaa]
+....
+                   +-------------+
+                   | Asciidoctor |-------+
+                   |   diagram   |       |
+                   +-------------+       | PNG out
+                       ^                 |
+                       | ditaa in        |
+                       |                 v
+ +--------+   +--------+----+    /---------------\
+ |        | --+ Asciidoctor +--> |               |
+ |  Text  |   +-------------+    |   Beautiful   |
+ |Document|   |   !magic!   |    |    Output     |
+ |     {d}|   |             |    |               |
+ +---+----+   +-------------+    \---------------/
+     :                                   ^
+     |          Lots of work             |
+     +-----------------------------------+
+....
+
+.erd example
+[erd]
+....
+title {label: "nfldb Entity-Relationship diagram (condensed)", size: "20"}
+
+# Entities
+
+[player] {bgcolor: "#d0e0d0"}
+  *player_id {label: "varchar, not null"}
+  full_name {label: "varchar, null"}
+  team {label: "varchar, not null"}
+  position {label: "player_pos, not null"}
+  status {label: "player_status, not null"}
+
+[team] {bgcolor: "#d0e0d0"}
+  *team_id {label: "varchar, not null"}
+  city {label: "varchar, not null"}
+  name {label: "varchar, not null"}
+
+[game] {bgcolor: "#ececfc"}
+  *gsis_id {label: "gameid, not null"}
+  start_time {label: "utctime, not null"}
+  week {label: "usmallint, not null"}
+  season_year {label: "usmallint, not null"}
+  season_type {label: "season_phase, not null"}
+  finished {label: "boolean, not null"}
+  home_team {label: "varchar, not null"}
+  home_score {label: "usmallint, not null"}
+  away_team {label: "varchar, not null"}
+  away_score {label: "usmallint, not null"}
+
+[drive] {bgcolor: "#ececfc"}
+  *+gsis_id {label: "gameid, not null"}
+  *drive_id {label: "usmallint, not null"}
+  start_field {label: "field_pos, null"}
+  start_time {label: "game_time, not null"}
+  end_field {label: "field_pos, null"}
+  end_time {label: "game_time, not null"}
+  pos_team {label: "varchar, not null"}
+  pos_time {label: "pos_period, null"}
+
+[play] {bgcolor: "#ececfc"}
+  *+gsis_id {label: "gameid, not null"}
+  *+drive_id {label: "usmallint, not null"}
+  *play_id {label: "usmallint, not null"}
+  time {label: "game_time, not null"}
+  pos_team {label: "varchar, not null"}
+  yardline {label: "field_pos, null"}
+  down {label: "smallint, null"}
+  yards_to_go {label: "smallint, null"}
+
+[play_player] {bgcolor: "#ececfc"}
+  *+gsis_id {label: "gameid, not null"}
+  *+drive_id {label: "usmallint, not null"}
+  *+play_id {label: "usmallint, not null"}
+  *+player_id {label: "varchar, not null"}
+  team {label: "varchar, not null"}
+
+[meta] {bgcolor: "#fcecec"}
+  version {label: "smallint, null"}
+  season_type {label: "season_phase, null"}
+  season_year {label: "usmallint, null"}
+  week {label: "usmallint, null"}
+
+# Relationships
+
+player      *--1 team
+game        *--1 team {label: "home"}
+game        *--1 team {label: "away"}
+drive       *--1 team
+play        *--1 team
+play_player *--1 team
+
+game        1--* drive
+game        1--* play
+game        1--* play_player
+
+drive       1--* play
+drive       1--* play_player
+
+play        1--* play_player
+
+player      1--* play_player
+....
+
+== Diagram - diagrams.net 
+
+diagrams.net의 web 편집 기능을 이용하여 embed / export를 이용하여 문서에 첨부가 가능하나 두 방식 모두 다이어그램을 편집한 경우 다시 embed/export 해서 문서 또는 이미지를 수정해야 한다. 
+
+=== SVG embed 방식 
+
+HTML embed 방식처럼 view 화면에서 editor 버튼을 확인 할 수 있으며, 크롬 확장 같은 preview 화면에서도 이미지가 보이기 때문에 문서 작성이 좀더 쉬워 진다. 
+
+embed 하는 방식은 동일하며 html 대신 svg를 선택하면 되며, 나머지 처리는 동일하다. 
+
+=== HTML embed 방식 
+
+digrams.net 다이어그램을 HTML embed로 생성(File -> Embed -> HTML)하여 아래 example처럼 작성하면 해당 페이지가 embed되서 출력 되며, 그림을 클릭하여 확대 후 편집 버튼을 눌러 편집 화면으로 이동하여 편집이 가능하다. 
+
+IMPORTANT: 생성된 내용에는 데이터가 포함되어 있으므로 diagram이 복잡할 수록 양도 많아지지만, 별도로 파일을 관리하지 않아도 된다. 다만, diagram을 수정한 경우에는 다시 HTML 내용을 생성하여 문서를 수정해 주어야 한다. 
+
+.외부 Javascript embed 방법 
+[source]
+----
+++++
+<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2021-02-20T03:15:44.392Z\&quot; agent=\&quot;5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15\&quot; etag=\&quot;IRN6GysW0NEAKylW0Bp-\&quot; version=\&quot;14.4.2\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;prtHgNgQTEPvFCAcTncT\&quot; name=\&quot;Page-1\&quot;&gt;7Vpdc6MgFP...6rR1fZcEPfyk8G4dqjuFhuTcU1KQzfyrena2nP80Adz8Aw==&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+++++
+----
+
+++++
+<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2021-02-20T04:46:04.140Z\&quot; agent=\&quot;5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15\&quot; etag=\&quot;kU-dZ6r_iyh-355nYPm7\&quot; version=\&quot;14.4.2\&quot;&gt;&lt;diagram id=\&quot;prtHgNgQTEPvFCAcTncT\&quot; name=\&quot;Page-1\&quot;&gt;7VrbcpswEP0aP2YGEL7kMdd62tymTqbTvnQUUECOQK6QjfHXVxjJGEQwSewYp81L0LKAOGe1Z1e4A86C+RcGJ/41dRHpWIY774DzjmWZltUV/1JLkll6lpEZPIZd6ZQbRniBpFG5TbGLooIjp5RwPCkaHRqGyOEFG2SMxkW3J0qKT51AD2mGkQOJbv2BXe5n1oHVz+1DhD1fPdnsHWdnAqic5ZtEPnRpvGYCFx1wxijl2VEwP0MkBU/hkl13+cLZ1cQYCnmTC9ybeXLzre/0B49X8Sxy0fWwe2TK2c4gmco3vhPwyhnzRMEQxTggMBSjU58HRBhNcej4mLhXMKHTdAYRh86zGp0yFAky79T0zJLpGqYhYqT3owwvaMghkQZxH8ZlJFhFj1H6COmmv7+EZIYYR/M1k8TjC6IB4iwRLqvwlNwkpXGcU91Vkeiv0Qx60ghleHmre+cMiANJwisIUYG1RohGBnJFiMohZdynHg0hucitp4xOQxe5Eqnc54rSiSRjjDhPJMpwymmRWRdG/vL6dIBC9yRdSmIY0mUMCMslJuRFJmpjLaJT5qA6DGy50CHzUN0drV7mmAJSyzdDBHI8K67prXMHzH1QtcaOQ2AUYadAkLkLggYNCQJGuwjq/ieohIjdLoIG/wpBvaYEbT3FLS8V7wuTNYcJxSGP1u58lxrWlHJQVEpgl4qNkr9t1PqLg2wGeaisXuUd2mlo2nmV1iyWoSfm6oKmpvR4m9Y1r0UqSg/7uKL0WNUo2y89uq0oPRoivCqrNy410LSaaFcuVPOupYMQ0QilsMc+5mg0gUsoYtGLvQvU5mFrF9e5XRHFFUFs7yyG7c2gFSN0A3BPYvFfwgCT9AWHiMwQxw6UJ2QMm5Ycn1FC2fIhwFj+CTsk2AtTZRHII7ZLKsrdDNC5GFRwsbNWBjQJ4ENS98YpRyG/Wd2tVqUcoAvoP7N6ypls76vHOoT0v9oIaUv+NzXUZAmoo9faErBmN+qjS0J9e/DAU7jqBLbWoKlWuyUpXM37E6Twd2/n7juFq9Co5cKnweM0+lQ8WPsThQdj8eAnf8bjW3B0/9ND/ZFjHOmacI/mXKOCp8aSFjD6jBSYcu/7SSSdkkmDNsVKsENO5IkAuy55SaeLy/EFsBsT1bRT6zUjZXfSotc3UqnBwSl1ZYR/rFKDdnw32qJSq/lvbLaafi3a/lbq+xj7PFsVaim/udmqqHQ/ttlqUjW1X6lfzUO5fauomHal1GMwPP/9KwK3l11/4R+Pnwfx8BCVegesDN5UPm1DWr7HD088ib+iBep7njP59nj6s4IUjZBXbz+8uqa0S6BYfR2VlbpuO2dUwtJkf2YfX0sad7gV34jr+N+5bIph/muo7Jtg/psycPEX&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+++++
+
+=== image 링크 방식 
+
+svg 형태로 export하여 image로 첨부하고 편집링크로 권한 있는 사람만 편집하게 하는 방법도 가능하며
+이경우, digram 파일이 google drive에 있으면, 해당 파일의 접근권한에따라 편집이 가능하게 된다. 
+
+IMPORTANT: diagram 파일이 google drive에 저장한 경우에 한해 가능하며 diagram을 수정한 경우 svg 등 이미지 파일을 다시 export해서 기존의 이미지 파일을 변경해 주어야 한다. 
+
+.image link 방법 
+[source]
+----
+link:https://app.diagrams.net/#G16sf_MQpclSmANL6AgemuqqgsuB6A52b_[image:mfs_saas_nfs.svg[] mfs_saas_nfs.svg]
+----
+
+
+link:https://app.diagrams.net/#G16sf_MQpclSmANL6AgemuqqgsuB6A52b_[image:mfs_saas_nfs.svg[] mfs_saas_nfs.svg]
+

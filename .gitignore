@@ -1,0 +1,9 @@
+.gradle
+.DS_Store
+build
+public/
+
+.vscode
+.project
+.settings/
+node_modules/

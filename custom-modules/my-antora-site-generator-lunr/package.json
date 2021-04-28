@@ -1,5 +1,5 @@
 {
-  "name": "finlab-antora-site-generator-lunr",
+  "name": "my-antora-site-generator-lunr",
   "version": "0.1.0",
   "description": "An Antora's site generator that produces a Lunr index.",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@antora/ui-loader": "~2"
   },
   "dependencies": {
-    "finlab-antora-lunr": "0.1.0"
+    "my-antora-lunr": "0.1.0"
   },
   "devDependencies": {
     "@antora/asciidoc-loader": "~2",

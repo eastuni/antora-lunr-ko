@@ -1,6 +1,6 @@
 'use strict'
 
-const generateIndex = require('finlab-antora-lunr')
+const generateIndex = require('my-antora-lunr')
 const aggregateContent = require('@antora/content-aggregator')
 const buildNavigation = require('@antora/navigation-builder')
 const buildPlaybook = require('@antora/playbook-builder')

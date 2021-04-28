@@ -1,5 +1,5 @@
 {
-  "name": "finlab-antora-lunr",
+  "name": "my-antora-lunr",
   "version": "0.1.0",
   "description": "Generate a Lunr index from a catalog.",
   "license": "MIT",

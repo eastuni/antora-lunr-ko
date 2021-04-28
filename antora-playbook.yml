@@ -3,7 +3,7 @@ asciidoc:
     - asciidoctor-kroki
 site:
   title: my docs
-  start_page: docs::index.adoc
+  start_page: mydocs::index.adoc
   robots: disallow
 content:
   sources:
