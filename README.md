@@ -4,28 +4,41 @@
 
 ## run script
 
-### antora install
+### antora 설치
 
-npm i -g @antora/cli @antora/site-generator-default
+`npm i -g @antora/cli @antora/site-generator-default`
 
-### node modules
+### node modules 설치
 
-npm i
+* 커스텀 모듈 설치
 
-# npm i ./custom-modules/my-antora-lunr
-# npm i ./custom-modules/my-antora-site-generator-lunr
-# npm i asciidoctor asciidoctor-kroki
-# cp ./custom-modules/lunr-kr/lunr.kr.js node_modules/lunr-languages
+`npm i ./custom-modules/my-antora-lunr  `
+`npm i ./custom-modules/my-antora-site-generator-lunr  `
+
+* 한국어 파일 추가  
+
+`cp ./custom-modules/lunr-kr/lunr.kr.js node_modules/lunr-languages ` 
+
+* 필요시  
+
+`npm i asciidoctor asciidoctor-kroki  `
+`npm i  `
 
 ### antora build
 
-antora --generator my-antora-site-generator-lunr antora-playbook.yml --attribute DOCSEARCH_ENABLED=true --attribute DOCSEARCH_ENGINE=lunr --attribute DOCSEARCH_LANGS=en,kr --stacktrace
+* powershell
+ 
+`$env:DOCSEARCH_ENABLED='true'; $env:DOCSEARCH_ENGINE='lunr'; $env:DOCSEARCH_LANGS='en,kr'; antora --generator my-antora-site-generator-lunr antora-playbook.yml --stacktrace`
+
+* shell
+
+`DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr DOCSEARCH_LANGS=en,kr antora --generator my-antora-site-generator-lunr antora-playbook.yml --stacktrace`
 
 ### run web server
 
-npm i -g http-server
+`npm i -g http-server`
 
-http-server public -c-1
+`http-server public -c-1`
 
 ## 참고 오픈소스
 
