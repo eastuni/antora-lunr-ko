@@ -10,15 +10,6 @@
 
 ### node modules 설치
 
-* 커스텀 모듈 설치
-
-`npm i ./custom-modules/my-antora-lunr  `
-`npm i ./custom-modules/my-antora-site-generator-lunr  `
-
-* 한국어 파일 추가  
-
-`cp ./custom-modules/lunr-kr/lunr.kr.js node_modules/lunr-languages ` 
-
 * 필요시  
 
 `npm i asciidoctor asciidoctor-kroki  `
@@ -28,11 +19,11 @@
 
 * powershell
  
-`$env:DOCSEARCH_ENABLED='true'; $env:DOCSEARCH_ENGINE='lunr'; $env:DOCSEARCH_LANGS='en,kr'; antora --generator my-antora-site-generator-lunr antora-playbook.yml --stacktrace`
+`$env:DOCSEARCH_ENABLED='true'; $env:DOCSEARCH_ENGINE='lunr'; $env:DOCSEARCH_LANGS='en,ko'; antora --generator @eastuni/antora-site-generator-lunr-ko antora-playbook.yml --stacktrace`
 
 * shell
 
-`DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr DOCSEARCH_LANGS=en,kr antora --generator my-antora-site-generator-lunr antora-playbook.yml --stacktrace`
+`DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr DOCSEARCH_LANGS=en,kr antora --generator @eastuni/antora-site-generator-lunr-ko antora-playbook.yml --stacktrace`
 
 ### run web server
 

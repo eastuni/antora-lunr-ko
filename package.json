@@ -7,7 +7,7 @@
     "asciidoctor": "^2.2.3",
     "asciidoctor-kroki": "^0.12.0",
     "http-server": "^0.12.3",
-    "my-antora-lunr": "file:custom-modules/my-antora-lunr",
-    "my-antora-site-generator-lunr": "file:custom-modules/my-antora-site-generator-lunr"
+    "@eastuni/antora-lunr-ko": "^0.8.0",
+    "@eastuni/antora-site-generator-lunr-ko": "^0.6.3"
   }
 }
